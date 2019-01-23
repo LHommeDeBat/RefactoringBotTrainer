@@ -1,5 +1,18 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+src/main/resources/application.yml
+
 # Compiled class file
 *.class
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
 # Log file
 *.log
