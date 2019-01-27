@@ -19,11 +19,14 @@ public class BotTrainingController {
 	
 	@Autowired
 	WitDataGrabber dataGrabber;
+	@Autowired
+	DataAnonymizer anonymizer;
 
 	@GetMapping(value = "/getObjectFromMessage/{message}", produces = "application/json")
 	@ApiOperation(value = "Get Wit-Object from a message.")
 	public ResponseEntity<?> getWitObject(@PathVariable String message) {
 		try {
+			message = anonymizer.anonymizeComment(message);
 			return new ResponseEntity<WitObject>(dataGrabber.getWitObjectFromMessage(message), HttpStatus.OK);
 		} catch (RestClientException e) {
 			return new ResponseEntity<String>("Could not connect with Wit-API!", HttpStatus.INTERNAL_SERVER_ERROR);
